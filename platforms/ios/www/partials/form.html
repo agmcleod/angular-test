@@ -1,0 +1,24 @@
+<form novalidate class="simple-form">
+  <fieldset>
+    <legend>Enter in your info</legend>
+    <div class="field field-text">
+      <label for="first-name">First Name</label>
+      <input type="text" ng-model="interaction.first_name" required id="first-name" />
+    </div>
+    <div class="field field-text">
+      <label for="last-name">Last Name</label>
+      <input type="text" ng-model="interaction.last_name" required id="last-name" />
+    </div>
+    <div class="field field-text">
+      <label for="email">Email</label>
+      <input type="text" ng-pattern="/^.+\@.+\..+$/i" required ng-model="interaction.email" id="email" />
+    </div>
+    <div ng-messages="interaction.email.$error">
+      <div ng-message="required">required</div>
+      <div ng-message="email">invalid email</div>
+    </div>
+    <div class="field field-submit">
+      <input type="submit" ng-click="submit()" />
+    </div>
+  </fieldset>
+</form>
