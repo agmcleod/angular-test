@@ -1,20 +1,36 @@
-<form novalidate class="simple-form">
+<!-- form name becomes a varibale usable in controller & view -->
+<!-- novalidate turns off html5 validation -->
+<form name="interactionForm" novalidate class="simple-form" ng-submit="submit()">
   <fieldset>
     <legend>Enter in your info</legend>
     <div class="field field-text">
       <label for="first-name">First Name</label>
-      <input type="text" ng-model="interaction.first_name" required id="first-name" />
+      <!-- name on input fields get attached to the form name object. Angular uses required to say it's a required attribute -->
+      <!-- ng-model maps the field to a property on an object in our controller scope -->
+      <input type="text" name="firstName" ng-model="interaction.first_name" id="first-name" required />
+      <!-- Can use the firstName field now to check if it's invalid -->
+      <div class="error-container" ng-show="interactionForm.submitted && interactionForm.firstName.$invalid">
+        <small class="error" ng-show="interactionForm.firstName.$error.required">First name required</small>
+      </div>
     </div>
     <div class="field field-text">
       <label for="last-name">Last Name</label>
-      <input type="text" ng-model="interaction.last_name" required id="last-name" />
+      <input type="text" name="lastName" ng-model="interaction.last_name" required id="last-name" />
+      <div class="error-container" ng-show="interactionForm.submitted && interactionForm.lastName.$invalid">
+        <small class="error" ng-show="interactionForm.lastName.$error.required">Last name required</small>
+      </div>
     </div>
     <div class="field field-text">
       <label for="email">Email</label>
-      <input type="text" ng-pattern="/^.+\@.+\..+$/i" required ng-model="interaction.email" id="email" />
+      <!-- ng-pattern used to dicate pattern for this field -->
+      <input type="text" name="email" ng-pattern="/^.+\@.+\..+$/i" required ng-model="interaction.email" id="email" />
+      <div class="error-container" ng-show="interactionForm.submitted && interactionForm.email.$invalid">
+        <small class="error" ng-show="interactionForm.email.$error.required">Email required</small>
+        <small class="error" ng-show="interactionForm.email.$error.pattern">Must be a valid email</small>
+      </div>
     </div>
     <div class="field field-submit">
-      <input type="submit" ng-click="submit()" />
+      <input type="submit" />
     </div>
   </fieldset>
 </form>

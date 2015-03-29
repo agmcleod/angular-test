@@ -1,7 +1,6 @@
-var myApp = angular.module('myApp', ['ngRoute'])
-.config(function ($compileProvider){
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-});
+// load the app module with ngRouting
+var myApp = angular.module('myApp', ['ngRoute']);
+// the router. Pretty straight forward. Specify path for the template & controller
 myApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
     when('/', {
